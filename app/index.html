@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FETCHING MODEL TESTING</title>
+</head>
+<body>
+    <h1>HOAX DETECTOR</h1>
+    <form method="POST" id="predictForm">
+        <label for="info"> Insert Info:</label>
+        <input type="text" id="info">
+        <button type="submit"> CHECK HOAX </button>
+    </form>
+
+    <div id="result"></div>
+
+    <script>
+        const form = document.getElementById("predictForm");
+        const resultDiv = document.getElementById("result");
+
+        form.addEventListener("submit", async function (e) {
+            e.preventDefault(); // cegah reload halaman
+
+            const text = document.getElementById("info").value;
+
+            try {
+                const response = await fetch("http://127.0.0.1:5000/predict", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ information: text })
+                });
+
+                const data = await response.json();
+
+                if (data.error) {
+                    resultDiv.innerHTML = `<p style="color:red">❌ Error: ${data.error}</p>`;
+                } else {
+                    resultDiv.innerHTML = `
+                        <div class="result ${data.prediction === "1" ? "hoax" : "fact"}">
+                        <h3>Hasil Prediksi:</h3>
+                        <p><b>Input:</b> ${data.input}</p>
+                        <p><b>Setelah Preprocessing:</b> ${data.processed}</p>
+                        <p><b>Kategori:</b> 
+                            ${data.prediction === "1" ? "🚨 HOAX" : "✅ FAKTA"}
+                            ${data.prediction}
+                        </p>
+                        </div>
+                    `;
+                }
+            } catch (err) {
+                resultDiv.innerHTML = `<p style="color:red">⚠️ Gagal konek ke server: ${err}</p>`;
+            }
+        });
+    </script>
+</body>
+</html>
