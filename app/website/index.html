@@ -1,3 +1,488 @@
-<h1>
-    halo hai
-</h1>
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HoaxBuster - Basmi Hoax, Temukan Kepastian!</title>
+    <style>
+        /* Reset CSS */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: #fff;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #e74c3c;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 30px;
+        }
+        
+        nav ul li a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        nav ul li a:hover {
+            color: #e74c3c;
+        }
+        
+        .time-display {
+            font-size: 14px;
+            color: #777;
+        }
+        
+        /* Main Content Styles */
+        main {
+            flex: 1;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            width: 100%;
+        }
+        
+        .hero {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .hero h1 {
+            font-size: 32px;
+            color: #e74c3c;
+            margin-bottom: 20px;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background-color: #e74c3c;
+            color: white;
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 20px;
+            transition: background-color 0.3s;
+        }
+        
+        .cta-button:hover {
+            background-color: #c0392b;
+        }
+        
+        .analysis-section {
+            background-color: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            margin-bottom: 40px;
+        }
+        
+        .input-container {
+            position: relative;
+            margin-bottom: 20px;
+        }
+        
+        .input-container textarea {
+            width: 100%;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            resize: vertical;
+            min-height: 120px;
+            font-size: 16px;
+        }
+        
+        .input-container textarea::placeholder {
+            color: #999;
+        }
+        
+        .analyze-button {
+            background-color: #e74c3c;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 30px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            display: block;
+            margin: 0 auto;
+        }
+        
+        .analyze-button:hover {
+            background-color: #c0392b;
+        }
+        
+        .result-section {
+            background-color: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            margin-bottom: 40px;
+            display: none;
+        }
+        
+        .result-title {
+            font-size: 24px;
+            color: #e74c3c;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .validity-scale {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 30px;
+        }
+        
+        .scale-item {
+            text-align: center;
+            flex: 1;
+            padding: 10px;
+            border-radius: 5px;
+            margin: 0 5px;
+        }
+        
+        .scale-item.active {
+            font-weight: bold;
+            transform: scale(1.05);
+        }
+        
+        .very-valid {
+            background-color: #e8f5e9;
+            color: #2e7d32;
+        }
+        
+        .tend-valid {
+            background-color: #c8e6c9;
+            color: #388e3c;
+        }
+        
+        .doubtful {
+            background-color: #ffecb3;
+            color: #f57c00;
+        }
+        
+        .tend-hoax {
+            background-color: #ffcdd2;
+            color: #d32f2f;
+        }
+        
+        .hoax {
+            background-color: #ffebee;
+            color: #c62828;
+        }
+        
+        .result-description {
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 20px;
+            text-align: center;
+        }
+        
+        .red-zone {
+            color: #c62828;
+            font-weight: bold;
+        }
+        
+        .recent-activity {
+            background-color: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            margin-bottom: 40px;
+            display: none;
+        }
+        
+        .activity-title {
+            font-size: 24px;
+            color: #e74c3c;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .activity-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 15px 0;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .activity-item:last-child {
+            border-bottom: none;
+        }
+        
+        .about-us {
+            background-color: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            margin-bottom: 40px;
+            display: none;
+        }
+        
+        .about-title {
+            font-size: 24px;
+            color: #e74c3c;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .team-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 30px;
+        }
+        
+        .team-member {
+            text-align: center;
+            width: 180px;
+        }
+        
+        .team-member-name {
+            font-weight: bold;
+            margin-top: 10px;
+        }
+        
+        /* Footer Styles */
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: auto;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .error-message {
+            color: #e74c3c;
+            text-align: center;
+            margin-top: 10px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <div class="header-container">
+            <div class="logo">HoaxBuster</div>
+            <nav>
+                <ul>
+                    <li><a href="#" class="nav-link" data-target="home">Home</a></li>
+                    <li><a href="#" class="nav-link" data-target="recent-activity">Recent Activity</a></li>
+                    <li><a href="#" class="nav-link" data-target="about-us">About Us</a></li>
+                </ul>
+            </nav>
+            <div class="time-display" id="current-time">08:31:22 WIB</div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Home Section -->
+        <section id="home">
+            <div class="hero">
+                <h1>Basmi Hoax, Temukan Kepastian!</h1>
+                <a href="#analysis-section" class="cta-button">MULAI SEKARANG!</a>
+            </div>
+
+            <div class="analysis-section" id="analysis-section">
+                <div class="input-container">
+                    <textarea id="news-input" placeholder="Masukkan informasi yang ingin dicek kebenarannya..."></textarea>
+                </div>
+                <p class="error-message" id="error-message">Isi dulu informasinya ya</p>
+                <button class="analyze-button" id="analyze-btn">Mulai Analisis!</button>
+            </div>
+
+            <div class="result-section" id="result-section">
+                <h2 class="result-title">Hasil Analisis Beritamu :</h2>
+                
+                <div class="validity-scale">
+                    <div class="scale-item very-valid">Sangat Valid</div>
+                    <div class="scale-item tend-valid">Cenderung Valid</div>
+                    <div class="scale-item doubtful">Meragukan</div>
+                    <div class="scale-item tend-hoax">Cenderung Hoax</div>
+                    <div class="scale-item hoax active">Hoax / Tidak Valid</div>
+                </div>
+                
+                <div class="result-description">
+                    <p>Analisis menunjukkan indikasi hoax sebesar <span class="red-zone">94,73%</span> dan <span class="red-zone">masuk zona merah</span>. Informasi ini terindikasi hoax. <span class="red-zone">Jangan langsung disebar ya!</span> Segera verifikasi lebih lanjut melalui sumber resmi dan terpercaya sebelum menyebarkannya.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Recent Activity Section -->
+        <section id="recent-activity" class="recent-activity">
+            <h2 class="activity-title">RECENT ACTIVITY</h2>
+            
+            <div class="activity-item">
+                <div class="activity-text">Indonesia sedang marak korupsi</div>
+                <div class="activity-percentage">21,27%</div>
+            </div>
+            
+            <div class="activity-item">
+                <div class="activity-text">Najwa Shihab promosi situs judi online di media sosial Facebook</div>
+                <div class="activity-percentage">94,73%</div>
+            </div>
+            
+            <div class="activity-item">
+                <div class="activity-text">Cuaca Indonesia bisa berubah setiap hari</div>
+                <div class="activity-percentage">51,23%</div>
+            </div>
+            
+            <div class="activity-item">
+                <div class="activity-text">Bank Indonesia terbitkan uang kertas baru dalam berbagai pecahan</div>
+                <div class="activity-percentage">96,84%</div>
+            </div>
+        </section>
+
+        <!-- About Us Section -->
+        <section id="about-us" class="about-us">
+            <h2 class="about-title">TIM PENGEMBANG</h2>
+            
+            <div class="team-container">
+                <div class="team-member">
+                    <div class="team-member-name">Lucia Sherina Natalia Kristianti</div>
+                </div>
+                
+                <div class="team-member">
+                    <div class="team-member-name">William Fernando Sukemi</div>
+                </div>
+                
+                <div class="team-member">
+                    <div class="team-member-name">William Pratama</div>
+                </div>
+                
+                <div class="team-member">
+                    <div class="team-member-name">Pandu Wicaksono</div>
+                </div>
+            </div>
+            
+            <div class="result-description">
+                <p>HoaxBuster adalah platform analisis informasi yang dirancang untuk membantu masyarakat Indonesia dalam memvalidasi kebenaran informasi yang mereka terima. Dengan teknologi deteksi cerdas ini, HoaxBuster akan memberikan respon berupa presentase hoaks suatu informasi, mulai dari sangat rendah hingga tinggi.</p>
+                <p>Tujuan kami adalah mendukung terciptanya ekosistem informasi yang sehat, meningkatkan literasi digital, serta membantu pengguna agar lebih bijak dalam menerima dan menyebarkan informasi.</p>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer Section -->
+    <footer>
+        <div class="footer-content">
+            <p>© 2025 - HoaxBuster</p>
+        </div>
+    </footer>
+
+    <script>
+        // Update current time
+        function updateTime() {
+            const now = new Date();
+            const timeString = now.toLocaleTimeString('id-ID', { 
+                hour: '2-digit', 
+                minute: '2-digit', 
+                second: '2-digit',
+                timeZone: 'Asia/Jakarta'
+            }) + ' WIB';
+            document.getElementById('current-time').textContent = timeString;
+        }
+        
+        // Initial time update
+        updateTime();
+        
+        // Update time every second
+        setInterval(updateTime, 1000);
+        
+        // Navigation functionality
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                // Hide all sections
+                document.querySelectorAll('main > section').forEach(section => {
+                    section.style.display = 'none';
+                });
+                
+                // Show the selected section
+                const target = this.getAttribute('data-target');
+                document.getElementById(target).style.display = 'block';
+                
+                // If home is selected, show analysis section
+                if (target === 'home') {
+                    document.getElementById('analysis-section').style.display = 'block';
+                    document.getElementById('result-section').style.display = 'none';
+                }
+            });
+        });
+        
+        // Analyze button functionality
+        document.getElementById('analyze-btn').addEventListener('click', function() {
+            const newsInput = document.getElementById('news-input').value.trim();
+            const errorMessage = document.getElementById('error-message');
+            
+            if (newsInput === '') {
+                errorMessage.style.display = 'block';
+            } else {
+                errorMessage.style.display = 'none';
+                document.getElementById('result-section').style.display = 'block';
+                
+                // Scroll to results
+                document.getElementById('result-section').scrollIntoView({ 
+                    behavior: 'smooth' 
+                });
+            }
+        });
+        
+        // Initially show only the home section
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('home').style.display = 'block';
+            document.getElementById('recent-activity').style.display = 'none';
+            document.getElementById('about-us').style.display = 'none';
+        });
+    </script>
+</body>
+</html>
