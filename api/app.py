@@ -2,22 +2,14 @@ import os
 import sys
 from flask import Flask, request, jsonify
 import joblib
-
-# add root path of this project
-ROOT_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
-sys.path.append(ROOT_DIR)
+from flask_cors import CORS
 
 # import preprocessor
 from model.preprocessing import IndonesianTextPreprocessor
 
-# path model
-MODEL_PATH = os.path.join(ROOT_DIR, "model", "final_model", "multinomialnb.joblib")
-
-# check if the model is found or not
-if not os.path.exists(MODEL_PATH):
-    raise FileNotFoundError(f"Model is not found: {MODEL_PATH}")
-
 # load model
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+MODEL_PATH = os.path.join(BASE_DIR, "multinomialnb.joblib")
 model = joblib.load(MODEL_PATH)
 
 # make instance of class preprocessor
@@ -25,6 +17,14 @@ preprocessor = IndonesianTextPreprocessor()
 
 # initialize the Flask
 app = Flask(__name__)
+CORS(app, resources={r"/*": {"origins": "*"}})
+
+@app.after_request
+def after_request(response):
+    response.headers.add("Access-Control-Allow-Origin", "*")
+    response.headers.add("Access-Control-Allow-Headers", "Content-Type,Authorization")
+    response.headers.add("Access-Control-Allow-Methods", "GET,POST,OPTIONS")
+    return response
 
 # endpoint default
 @app.route("/")
