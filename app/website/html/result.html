@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HoaxBuster | Check Result</title>
+  <link rel="icon" href="../assets/images/logo.png" type="image/png">
+  <link rel="stylesheet" href="../css/utils.css">
+  <link rel="stylesheet" href="../css/navbar.css">
+  <link rel="stylesheet" href="../css/footer.css">
+  <link rel="stylesheet" href="../css/result.css">
+  <script src="../js/navbar.js" defer></script>
+  <script src="../js/footer.js" defer></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js" defer></script>
+  <script src="../js/result.js" defer></script>
+  <script src="../js/home.js" defer></script>
+</head>
+<body>
+  <div class="container">
+    <div class="nav-container"></div>
+    <div class="first-section">
+      <section class="content-wrapper">
+        <div class="result-box">
+          <p class="title-gauge">HASIL ANALISIS TINGKAT HOAKS</p>
+          <h1 class="result-title" id="result-title"></h1>
+          <div class="gauge-chart-container">
+            <canvas id="gaugeChart"></canvas>
+          </div>
+          <div class="legend-container">
+            <div class="legend-item">
+              <div class="legend-color" style="background-color: #06801D;"></div> Sangat Valid
+            </div>
+            <div class="legend-item">
+              <div class="legend-color" style="background-color: #679E60;"></div> Cenderung Valid
+            </div>
+            <div class="legend-item">
+              <div class="legend-color" style="background-color: #FAD542;"></div> Meragukan
+            </div>
+            <div class="legend-item">
+              <div class="legend-color" style="background-color: #FF6666;"></div> Cenderung Hoax
+            </div>
+            <div class="legend-item">
+              <div class="legend-color" style="background-color: #E53935;"></div> Hoax / Tidak Valid
+            </div>
+          </div>
+          <div class="result-description" id="result-description"></div>
+        </div>
+      </section>
+    </div>
+    <div class="second-section">
+        <textarea name="information-input" id="input-info" placeholder="Masukkan informasi yang ingin dicek kebenarannya..."></textarea>
+        <p class="error-message"></p>
+        <button id="check-info" class="button">MULAI ANALISIS!</button>
+    </div>
+    <div class="footer-container"></div>
+  </div>
+</body>
+</html>

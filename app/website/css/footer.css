@@ -1,0 +1,51 @@
+.footer-container {
+    width: 100vw;
+    height: 4.5rem;
+    background-color: var(--x-secondary-10);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 2rem;
+    border-radius: 3rem 3rem 0 0;
+    border-color: var(--x-secondary-100);
+}
+
+.left-side {
+    width: 20rem;
+    /* background-color: aqua; */
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo-footer {
+    width: 3.5rem;
+    height: 3.5rem;
+}
+
+.left-side p {
+    font-size: var(--h-4-font-size);
+    font-weight: bold;
+    color: var(--x-accent-100);
+}
+
+.twitter {
+    zoom: 0.8;
+}
+
+.right-side {
+    /* background-color: antiquewhite; */
+    width: 15rem;
+    height: max-content;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.right-side img {
+    width: 2.25rem;
+    height: 2.25rem;
+}

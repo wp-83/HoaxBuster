@@ -1,0 +1,140 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.container .footer-container {
+    margin-top: auto;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.container .footer-container {
+    margin-top: auto;
+}
+
+.first-section {
+  padding-top: 4rem;
+  height: max-content;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.title {
+  font-family: poppins-bold;
+  font-size: var(--h-1-font-size);
+  font-weight: bold;
+  color: var(--x-primary-100);
+}
+
+.logo-home {
+  width: 24rem;
+  height: 24rem;
+}
+
+.subtitle {
+  margin: 1rem 0;
+  font-size: var(--h-3-font-size);
+  font-weight: bold;
+  color: var(--x-accent-100);
+}
+
+.transition {
+  position: relative;
+}
+
+.rectangle {
+  width: 100vw;
+  height: 2.5rem;
+  overflow-x: hidden;
+}
+
+.watermark {
+  width: max-content;
+  text-align: center;
+  transform: translateX(-2.5rem);
+  font-size: var(--h-4-font-size);
+}
+
+.rectangle:nth-child(1){
+  transform: rotate(-1deg) translateX(-1px);
+  background-color: var(--x-primary-100);
+}
+
+.rectangle:nth-child(2){
+  transform: rotate(1deg) translateY(-2.5rem) translateX(-1px);
+  background-color: var(--x-secondary-100);
+}
+
+.paragraph {
+    /* background-color: aqua; */
+    width: calc(100vw - 8rem);
+    height: max-content;
+    font-size: var(--h-4-font-size);
+    text-align: justify;
+    margin-top: 1.5rem;
+    margin-bottom: 4rem;
+}
+
+.second-section {
+    width: calc(100vw - 8rem);
+    margin-left: 4rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 10rem;
+}
+
+.title-developer {
+    font-family: poppins-bold;
+    font-size: var(--h-2-font-size);
+    margin-top: 2rem;
+    margin-bottom: 4rem;
+    color: var(--x-primary-100);
+}
+
+.profile-container {
+    display: flex;
+    flex-direction: row;
+    width: inherit;
+    justify-content: space-around;
+}
+
+.picture {
+    width: 12rem;
+    background-color: var(--x-info-20);
+    clip-path: circle();
+    padding-top: 1.75rem;
+    padding-left: .75rem;
+}
+
+.person:nth-child(3) .picture {
+    padding-left: 1rem;
+}
+
+.picture img {
+    width: 10rem;
+}
+
+.person {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.developer-name {
+    font-size: var(--h-5-font-size);
+    font-weight: bold;
+}
+
+.role {
+  color: var(--x-primary-100);
+    font-size: .9rem;
+}
