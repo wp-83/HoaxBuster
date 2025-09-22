@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Loading...</title>
+  <style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      color: #000000;
+      font-family: "arial";
+    }
+
+    .loading {
+      font-size: 1.5rem;
+      animation: blink 1s infinite;
+    }
+
+    @keyframes blink {
+      50% { opacity: 0.5; }
+    }
+
+    img {
+        width: 16rem;
+
+    }
+  </style>
+</head>
+<body>
+    <img src="app/assets/logo/logo_nobg.png" alt="logo">
+    <div class="loading">Sedang memuat...</div>
+
+    <script>
+        setTimeout(function() {
+          window.location.href = "app/website/html/home.html"; 
+        }, 3000);
+    </script>
+</body>
+</html>
