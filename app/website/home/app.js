@@ -45,7 +45,7 @@ function ensureErrorNode() {
         return;
       }
       err.style.display = 'none';
-      window.location.href = '/home-check/index.html';
+      window.location.href = '../home-check/index.html';
     });
   }
 

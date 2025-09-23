@@ -306,7 +306,7 @@
 
 .home .navbar {
   display: flex;
-  width: min(580px, 60vw); /* Responsive width */
+  width: min(580px, 60vw);
   align-items: center;
   justify-content: space-between;
   position: relative;
