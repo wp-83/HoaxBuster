@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const formSection = document.querySelector('.second-section');
   const input = document.querySelector('#input-info');
   const analyzeBtn = document.querySelector('#check-info');
-  const errorMsg = document.querySelector('.error-message'); // ✅ ambil langsung
+  const errorMsg = document.querySelector('.error-message');
 
   function scrollToInput() {
     if (!formSection) return;
@@ -11,7 +11,6 @@ document.addEventListener('DOMContentLoaded', () => {
     setTimeout(() => input?.focus({ preventScroll: true }), 250);
   }
 
-  // 👉 Fungsi utama analisis
   async function runAnalysis() {
     const textToAnalyze = (input?.value || '').trim();
 
@@ -41,10 +40,8 @@ document.addEventListener('DOMContentLoaded', () => {
         timestamp: new Date().toISOString()
       };
 
-      // simpan hasil terbaru
       localStorage.setItem('analysisResult', JSON.stringify(analysisResult));
 
-      // simpan history
       let history = [];
       try {
         history = JSON.parse(localStorage.getItem('searchHistory')) || [];
@@ -56,7 +53,6 @@ document.addEventListener('DOMContentLoaded', () => {
       history = history.slice(0, 10);
       localStorage.setItem('searchHistory', JSON.stringify(history));
 
-      // pindah ke halaman hasil
       window.location.href = 'result.html';
 
     } catch (error) {
@@ -65,19 +61,17 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // Tombol "Mulai Sekarang!" → scroll
   if (startBtn) {
     startBtn.style.cursor = 'pointer';
     startBtn.addEventListener('click', scrollToInput);
   }
 
-  // Tombol "Mulai Analisis!" → langsung runAnalysis()
   if (analyzeBtn) {
     analyzeBtn.style.cursor = 'pointer';
     analyzeBtn.addEventListener('click', runAnalysis);
   }
 
-  // Input listener
+
   if (input) {
     input.addEventListener('input', () => {
       if (errorMsg && input.value.trim()) {

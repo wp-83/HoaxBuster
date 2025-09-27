@@ -68,7 +68,7 @@
   margin-left: 4rem;
   display: flex;
   flex-direction: column;
-  margin-top: 4rem;
+  margin-top: 2rem;
 }
 
 .input-label {
@@ -109,4 +109,17 @@
   color: var(--x-primary-100);
   font-size: var(--h-5-font-size);
   font-style: italic;
+}
+
+.disclaimer {
+  font-size: var(--h-5-font-size);
+  margin-bottom: 2rem;
+  width: 100vw;
+  margin-left: -4rem;
+  background-color: var(--x-warning-100);
+  padding-left: 4rem;
+  padding-top: .5rem;
+  padding-bottom: .5rem;
+  text-align: center;
+  font-weight: bold;
 }
