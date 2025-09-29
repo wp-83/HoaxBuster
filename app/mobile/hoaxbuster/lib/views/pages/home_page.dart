@@ -136,8 +136,18 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ),
               ),
-        
-              const SizedBox(height: 100),
+
+              SizedBox(height:  20,),
+
+              Text(
+                "Untuk sementara hanya berfokus pada politik",
+                style: KTextStyle.Header7.copyWith(
+                  color: primary[100],
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+
+              SizedBox(height: 100),
             ],
           ),
         ),
